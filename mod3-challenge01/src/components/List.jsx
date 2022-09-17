@@ -18,16 +18,20 @@ export default function List() {
   return (
     <section className="cards">
       {char ? <img className="img-char" src={char} alt="" /> : "No hay imagen"}
-      {charList.map(({ id, name, status, species, image }, index) => (
-        <Card
-          key={id}
-          name={name}
-          status={status}
-          species={species}
-          image={image}
-          setChar={setChar}
-        />
-      ))}
+      {!isLoading ? (
+        charList.map(({ id, name, status, species, image }) => (
+          <Card
+            key={id}
+            name={name}
+            status={status}
+            species={species}
+            image={image}
+            setChar={setChar}
+          />
+        ))
+      ) : (
+        <p>Cargando</p>
+      )}
     </section>
   );
 }
